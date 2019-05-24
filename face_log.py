@@ -10,7 +10,7 @@ from PyQt5.QtCore import QTimer ,QCoreApplication
 from PyQt5.QtGui  import QImage, QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.uic import loadUi
-from foodshow_final import Ui_Dialog
+from foodshow import Ui_Dialog
 face_locations = []
 face_encodings = []
 face_names = []
