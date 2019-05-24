@@ -10,7 +10,7 @@ from PyQt5.QtCore import QTimer ,QCoreApplication
 from PyQt5.QtGui  import QImage, QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.uic import loadUi
-from foodshow_final import Ui_Dialog
+from foodshow_finalpi import Ui_Dialog
 face_locations = []
 face_encodings = []
 face_names = []
@@ -61,8 +61,9 @@ class webcam_dialog(QDialog):
         mydb.close()
         len_ID = int((len(know_face_names)))
         for IDLoadPic in range(len_ID):
-            person_image = face_recognition.load_image_file("pic/"+str(IDLoadPic+1)+".jpg")
-            known_face_encodings.append(face_recognition.face_encodings(person_image)[0]) 
+            if (IDLoadPic < len_ID):
+                person_image = face_recognition.load_image_file("pic/"+str(IDLoadPic+1)+".jpg")
+                known_face_encodings.append(face_recognition.face_encodings(person_image)[0]) 
     def __init__(self):
         super(webcam_dialog,self).__init__()
         loadUi('webcam_dialog.ui',self)
@@ -72,14 +73,15 @@ class webcam_dialog(QDialog):
     def selectFood(self):
         self.window = QtWidgets.QDialog()
         self.ui = Ui_Dialog()
+        self.ui.UsertoData(name)
         self.ui.setupUi(self.window)
         self.ui.user_name.setText(str(name))
         self.window.show()
     def start_webcam(self):
         self.loadData()
         self.capture=cv2.VideoCapture(0)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT,400)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH,540)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH,640)
         #self.minW = 0.1*self.capture.get(3)
         #self.minH = 0.1*self.capture.get(4)
         self.timer=QTimer(self)
@@ -91,7 +93,7 @@ class webcam_dialog(QDialog):
         ret,self.image = self.capture.read()
         self.image=cv2.flip(self.image,1)
         self.displayImage(self.image,1)
-        if mem_count > 10:
+        if mem_count > 20:
                 if mem_cache != 0:
                     self.selectFood()
                     self.stop_webcam()
@@ -172,3 +174,4 @@ if __name__=='__main__':
     window.show()
     sys.exit(app.exec_())
     
+
