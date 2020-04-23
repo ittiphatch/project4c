@@ -46,11 +46,12 @@ class webcam_dialog(QDialog):
         global known_face_encodings
         mydb = mysql.connector.connect(
             converter_class=MyConverter,
-            host="34.80.120.194",
+            host="localfost",
             user="root",
-            passwd="@Stang1996",
+            passwd="1234",
             database="project4c",
             port = 3306
+            #Mock up Database (TBA)
         )
         mycursor = mydb.cursor()
         mycursor.execute("SELECT username FROM users ORDER BY id ASC")

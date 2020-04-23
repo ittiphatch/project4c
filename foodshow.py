@@ -109,9 +109,9 @@ class Ui_Dialog(QMessageBox):
         global len_food
         mydb = mysql.connector.connect(
             converter_class=MyConverter,
-            host="34.80.120.194",
+            host="localhost",
             user="root",
-            passwd="@Stang1996",
+            passwd="1234",
             database="project4c",
             port = 3306
         )
