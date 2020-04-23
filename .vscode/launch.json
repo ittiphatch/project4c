@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Entrance",
+            "request": "launch",
+            "mainClass": "Entrance",
+            "projectName": "project4c_a461055"
+        }
+    ]
+}
